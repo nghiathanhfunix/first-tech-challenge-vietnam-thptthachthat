@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "Tutorial")
 public class Tutorial extends LinearOpMode
 {
+    // Khai báo các biến liên quan đến servo, động cơ HD và Core Hex
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftBackDrive = null;
     private DcMotor rightBackDrive = null;
@@ -18,6 +19,8 @@ public class Tutorial extends LinearOpMode
     private Servo wristServo;
     private boolean manualMode = false;
     private double armSetPoint = 0.0;
+
+    // Khai báo thêm các vị trí cũng như là position của servo và Core Hex
     private final double armManualDeadband = 0.03;
     private final double gripperClosedPosition = 1.0;
     private final double gripperOpenPosition = 0.5;
@@ -31,15 +34,21 @@ public class Tutorial extends LinearOpMode
     @Override
     public void runOpMode()
     {
+        // Định nghĩa từng biến cho từng bộ phận của robot 
+        // Servo
         grippedServo = hardwareMap.get(Servo.class, "servo1");
         wristServo = hardwareMap.get(Servo.class, "servo2");
 
+        // Core Hex
         coreHexMotorLeft = hardwareMap.get(DcMotor.class, "coreHexMotor1");
         coreHexMotorRight = hardwareMap.get(DcMotor.class, "coreHexMotor2");
 
+        // Động cơ HD
         leftBackDrive  = hardwareMap.get(DcMotor.class, "motor1");
         rightBackDrive = hardwareMap.get(DcMotor.class, "motor2");
 
+
+        // Khai bao hướng đi cũng như là chế độ lái cho core hex 
         coreHexMotorLeft.setDirection(DcMotor.Direction.FORWARD);
         coreHexMotorLeft.setDirection(DcMotor.Direction.REVERSE);
 
@@ -55,6 +64,8 @@ public class Tutorial extends LinearOpMode
         coreHexMotorLeft.setPower(0.0);
         coreHexMotorRight.setPower(0.0);
 
+
+        // Khai bao hướng đi cũng như là chế độ lái cho động cơ HD
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
 
